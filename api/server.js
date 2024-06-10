@@ -44,10 +44,15 @@ app.put('/', (req, res) => {
     const q = `UPDATE table1 SET email = ? WHERE id = 1`;
     con.query(q, [email], (err, data )=>{
 if(err) {return res.status(500).send("error executing put")}
-{return res.status(200).json({message: 'data inserted', data})}
+    {return res.status(200).json({message: 'data inserted', data})}
     })
 });
 app.delete('/', (req, res) => {
+    const q = `DELETE FROM table1 WHERE id = 1`;
+    con.query(q, (err)=>{
+    if(err){return res.status(500).send("error deleting")}
+    return res.json({message: 'Deleted'})
+    } )
 });
 
 app.listen(3000, () => {
