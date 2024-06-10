@@ -40,6 +40,12 @@ con.query(q, [name, lastName, phone, email], (err, data)=>{
 });
 
 app.put('/', (req, res) => {
+    const email = req.body.email;
+    const q = `UPDATE table1 SET email = ? WHERE id = 1`;
+    con.query(q, [email], (err, data )=>{
+if(err) {return res.status(500).send("error executing put")}
+{return res.status(200).json({message: 'data inserted', data})}
+    })
 });
 app.delete('/', (req, res) => {
 });
